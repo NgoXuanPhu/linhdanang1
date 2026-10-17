@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Đà Nẵng</title>
+    <!-- Sử dụng font chữ Google Fonts cho chuyên nghiệp -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset CSS cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Cuộn mượt mà khi click vào menu */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Thiết lập background cố định toàn trang */
+        body {
+            /* Đường dẫn tới ảnh của bạn */
+            background-image: url('images/background.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Lớp phủ tối (Overlay) để làm nổi bật chữ */
+        .overlay {
+            background-color: rgba(15, 23, 42, 0.7); /* Màu xanh đen trong suốt */
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Menu điều hướng - Hiệu ứng kính mờ (Glassmorphism) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        /* Container chứa nội dung */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px; /* Padding top để tránh bị header che */
+        }
+
+        /* Các section nội dung */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 80px; /* Offset cho fixed header khi cuộn */
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        /* Card hiển thị mục Du lịch & Ẩm thực */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* Nút kêu gọi hành động */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <!-- Header / Menu -->
+        <header>
+            <a href="#trang-chu" class="logo">DaNang Trip</a>
+            <nav>
+                <ul>
+                    <li><a href="#trang-chu">Trang chủ</a></li>
+                    <li><a href="#du-lich">Du lịch</a></li>
+                    <li><a href="#am-thuc">Ẩm thực</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <!-- Mục: Trang chủ -->
+            <section id="trang-chu">
+                <h1>Tuyệt tác miền Trung</h1>
+                <p>Khám phá Đà Nẵng - Thành phố đáng sống nhất Việt Nam. Nơi giao hòa hoàn hảo giữa núi non hùng vĩ, những dòng sông thơ mộng và những bãi biển vươn mình ra đại dương bao la.</p>
+                <a href="#du-lich" class="btn">Bắt đầu khám phá</a>
+            </section>
+
+            <!-- Mục: Du lịch -->
+            <section id="du-lich">
+                <h2>Điểm Đến Hấp Dẫn</h2>
+                <p>Những địa danh làm nên tên tuổi của thành phố bên sông Hàn.</p>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3>Bà Nà Hills</h3>
+                        <p>Khu du lịch sinh thái nghỉ dưỡng trải dài trên núi Chúa với Cầu Vàng nổi tiếng, làng Pháp cổ kính và không khí 4 mùa trong một ngày.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Biển Mỹ Khê</h3>
+                        <p>Được vinh danh là một trong những bãi biển quyến rũ nhất hành tinh với bãi cát trắng mịn, nước trong xanh và hàng dừa thơ mộng.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Bán Đảo Sơn Trà</h3>
+                        <p>Viên ngọc xanh của Đà Nẵng, nơi tọa lạc của Chùa Linh Ứng uy nghiêm và là môi trường sống của loài Voọc chà vá chân nâu quý hiếm.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mục: Ẩm thực -->
+            <section id="am-thuc">
+                <h2>Tinh Hoa Ẩm Thực</h2>
+                <p>Hương vị đậm đà, khó quên của dải đất miền Trung.</p>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3>Mì Quảng</h3>
+                        <p>Món ăn linh hồn của người Quảng Nam - Đà Nẵng, sợi mì dai ngon kết hợp cùng tôm, thịt, trứng cút và nước dùng sền sệt đậm đà.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Bánh Tráng Cuốn Thịt Heo</h3>
+                        <p>Sự kết hợp hoàn hảo giữa thịt heo hai đầu da, các loại rau rừng tươi mát và chén mắm nêm thơm lừng đặc trưng.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Hải Sản Tươi Sống</h3>
+                        <p>Tận hưởng thiên đường hải sản tươi ngon, giá rẻ được chế biến đa dạng phong cách dọc theo các con đường ven biển.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2026 DaNang Trip. Thiết kế giao diện HTML & CSS.</p>
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>
